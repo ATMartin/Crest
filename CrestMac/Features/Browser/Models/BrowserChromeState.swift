@@ -72,7 +72,8 @@ final class BrowserChromeState {
     }
 
     /// Utility shortcuts preserve the docked preference and toggle a floating sidebar when hidden.
-    func toggleUtility(_ surface: BrowserUtilitySurface) {
+    /// `focusingSearch` lets typing go straight to the utility's search field once it opens.
+    func toggleUtility(_ surface: BrowserUtilitySurface, focusingSearch: Bool = false) {
         if utilityPresentation.surface == surface,
             columnVisibility != .detailOnly || isFloatingSidebarPresented
         {
@@ -85,6 +86,9 @@ final class BrowserChromeState {
                 isFloatingSidebarPresented = true
             }
             presentUtility(surface)
+            if focusingSearch {
+                utilityPresentation.focusSearch()
+            }
         }
     }
 

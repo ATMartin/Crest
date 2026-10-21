@@ -104,7 +104,7 @@ struct BrowserMacCommand {
         .printPage, actsOnPage: true, isAvailable: { $0.commandPageSupports(.print) },
         run: { $0.commandPage?.printPage() })
     static let toggleSidebar = BrowserMacCommand(.toggleSidebar) { $0.toggleSidebar() }
-    static let showHistory = BrowserMacCommand(.showHistory) { $0.chrome.toggleUtility(.history) }
+    static let showHistory = BrowserMacCommand(.showHistory) { $0.chrome.toggleUtility(.history, focusingSearch: true) }
     static let showArchive = BrowserMacCommand(.showArchive) { $0.chrome.toggleUtility(.archive) }
     static let showDownloads = BrowserMacCommand(
         .showDownloads, isAvailable: { $0.supportsEngineCapability(.downloads) },
